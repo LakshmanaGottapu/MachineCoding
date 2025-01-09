@@ -42,10 +42,12 @@ function MouseMove() {
   }
   function handleMouseMove(e:MouseEvent) {
     const { clientX, clientY } = e;
-    if (circleRef && circleRef.current) {
-      circleRef.current.style.left = `${clientX - offSet.current.x}px`
-      circleRef.current.style.top = `${clientY - offSet.current.y}px`
-    }
+    setTimeout(() => {
+        if (circleRef && circleRef.current) {
+          circleRef.current.style.left = `${clientX - offSet.current.x}px`
+          circleRef.current.style.top = `${clientY - offSet.current.y}px`
+        }
+      }, 250)
   }
   return (
     <div  className='parent' style={{ height: '100vh', width: '100vw', position:'relative' }}>
