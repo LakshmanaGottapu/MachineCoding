@@ -5,7 +5,9 @@ function MouseMove() {
   const circleRef = useRef<HTMLDivElement>(null);
   const offSet = useRef({ x: 0, y: 0 });
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
+    const parentElement = document.querySelector<HTMLDivElement>('.parent');
+    if(parentElement) 
+      parentElement.addEventListener('mousemove', handleMouseMove);
     const { x, y } = getPosition();
     if (circleRef && circleRef.current) {
       const draggableStyle = circleRef.current.getBoundingClientRect();
@@ -18,7 +20,8 @@ function MouseMove() {
       circleRef.current.style.top = `${y}px`;
     }
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      if(parentElement)
+        parentElement.removeEventListener('mousemove', handleMouseMove);
     }
   }, [])
   function getRandomPosition() {
@@ -40,12 +43,12 @@ function MouseMove() {
   function handleMouseMove(e:MouseEvent) {
     const { clientX, clientY } = e;
     if (circleRef && circleRef.current) {
-      circleRef.current.style.left = `${clientX + offSet.current.x}px`
-      circleRef.current.style.top = `${clientY + offSet.current.y}px`
+      circleRef.current.style.left = `${clientX - offSet.current.x}px`
+      circleRef.current.style.top = `${clientY - offSet.current.y}px`
     }
   }
   return (
-    <div className='parent' style={{ height: '100vh', width: '100vw' }}>
+    <div  className='parent' style={{ height: '100vh', width: '100vw', position:'relative' }}>
       <Circle ref={circleRef} />
     </div>
   )

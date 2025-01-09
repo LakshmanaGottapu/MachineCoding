@@ -1,8 +1,9 @@
 import {useState, useRef, useEffect} from 'react';
 
-const MouseTracker = () => {
+const MouseDrag = () => {
     type Pos = {x:number, y:number}
     const [position, setPosition] =  useState({x:10, y:10});
+    
     const offSet = useRef({x:0,y:0});
     useEffect(()=>{
       setPosition(getPosition())
@@ -50,5 +51,5 @@ const MouseTracker = () => {
   )
 }
 
-export default MouseTracker
+export default MouseDrag
 
