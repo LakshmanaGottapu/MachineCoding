@@ -1,13 +1,15 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Circle from '../Components/Circle'
+import lodash from 'lodash'
 function MouseMove() {
   type Pos = { x: number, y: number }
   const circleRef = useRef<HTMLDivElement>(null);
   const offSet = useRef({ x: 0, y: 0 });
   useEffect(() => {
+    const throttledMouseMove = lodash.throttle(handleMouseMove,50)
     const parentElement = document.querySelector<HTMLDivElement>('.parent');
     if(parentElement) 
-      parentElement.addEventListener('mousemove', handleMouseMove);
+      parentElement.addEventListener('mousemove', throttledMouseMove);
     const { x, y } = getPosition();
     if (circleRef && circleRef.current) {
       const draggableStyle = circleRef.current.getBoundingClientRect();
@@ -21,7 +23,7 @@ function MouseMove() {
     }
     return () => {
       if(parentElement)
-        parentElement.removeEventListener('mousemove', handleMouseMove);
+        parentElement.removeEventListener('mousemove', throttledMouseMove);
     }
   }, [])
   function getRandomPosition() {
@@ -35,19 +37,22 @@ function MouseMove() {
     let initialPos = localStorage.getItem('initialPos');
     if (initialPos !== null) {
       const data = JSON.parse(initialPos);
-      console.log({ data })
       return data as Pos;
     }
     return getRandomPosition()
   }
+  let count = 0
   function handleMouseMove(e:MouseEvent) {
+    count++;
+    console.log(count)
     const { clientX, clientY } = e;
     setTimeout(() => {
+      window.requestAnimationFrame(() => {
         if (circleRef && circleRef.current) {
           circleRef.current.style.left = `${clientX - offSet.current.x}px`
           circleRef.current.style.top = `${clientY - offSet.current.y}px`
-        }
-      }, 250)
+      } })  
+    }, 250)
   }
   return (
     <div  className='parent' style={{ height: '100vh', width: '100vw', position:'relative' }}>
