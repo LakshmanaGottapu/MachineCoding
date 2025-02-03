@@ -7,6 +7,9 @@ import Counter from './Pages/Counter.tsx'
 import EventPage from './Pages/EventPage.tsx'
 import GunPage from './Pages/GunPage.tsx'
 import MultitabPage from './Pages/MultitabPage.tsx'
+import HeavyTask from './Components/HeavyTask.tsx';
+import Pages from './Components/Pages.tsx'
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -35,6 +38,14 @@ const router = createBrowserRouter([
             {
                 path: 'tabform',
                 element: <MultitabPage />
+            },
+            {
+                path: 'heavy',
+                element: <HeavyTask/>
+            },
+            {
+                path: 'pagination',
+                element: <Pages/>
             }
         ]
     }
