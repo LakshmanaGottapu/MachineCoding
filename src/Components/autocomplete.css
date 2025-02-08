@@ -1,0 +1,18 @@
+.results-container{
+    border: 1px solid lightgray;
+    width: 246px;
+    padding: 5px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+.result{
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+}
+.result:hover{
+    background-color: lightgray;
+}
+.input{
+    width:250px;
+}

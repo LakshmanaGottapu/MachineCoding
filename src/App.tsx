@@ -14,7 +14,9 @@ function App() {
             <NavItem><Link to='gun'>Guns</Link></NavItem>
             <NavItem><Link to='tabform'>Tabform</Link></NavItem>
             <NavItem><Link to='heavy'>heavy task</Link></NavItem>
-            <NavItem><Link to='pagination'>pagination</Link></NavItem>
+            <NavItem><Link to='apipagination'>apipagination</Link></NavItem>
+            <NavItem><Link to='clientpagination'>clientpagination</Link></NavItem>
+            <NavItem><Link to='autocomplete'>autocomplete</Link></NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

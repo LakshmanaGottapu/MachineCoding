@@ -8,8 +8,9 @@ import EventPage from './Pages/EventPage.tsx'
 import GunPage from './Pages/GunPage.tsx'
 import MultitabPage from './Pages/MultitabPage.tsx'
 import HeavyTask from './Components/HeavyTask.tsx';
-import Pages from './Components/Pages.tsx'
-
+import APIPagination from './Components/APIPagination.tsx'
+import ClientPagination from './Components/ClientPagination.tsx'
+import AutoComplete from './Components/AutoComplete.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -44,8 +45,16 @@ const router = createBrowserRouter([
                 element: <HeavyTask/>
             },
             {
-                path: 'pagination',
-                element: <Pages/>
+                path: 'apipagination',
+                element: <APIPagination/>
+            },
+            {
+                path: 'clientpagination',
+                element: <ClientPagination/>
+            },
+            {
+                path: 'autocomplete',
+                element: <AutoComplete/>
             }
         ]
     }
