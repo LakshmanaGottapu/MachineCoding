@@ -17,6 +17,7 @@ function App() {
             <NavItem><Link to='apipagination'>apipagination</Link></NavItem>
             <NavItem><Link to='clientpagination'>clientpagination</Link></NavItem>
             <NavItem><Link to='autocomplete'>autocomplete</Link></NavItem>
+            <NavItem><Link to='accordion'>accordion</Link></NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

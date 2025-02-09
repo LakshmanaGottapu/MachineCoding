@@ -11,6 +11,7 @@ import HeavyTask from './Components/HeavyTask.tsx';
 import APIPagination from './Components/APIPagination.tsx'
 import ClientPagination from './Components/ClientPagination.tsx'
 import AutoComplete from './Components/AutoComplete.tsx'
+import Accordion from './Components/Accordion.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: 'autocomplete',
                 element: <AutoComplete/>
+            },
+            {
+                path: 'accordion',
+                element: <Accordion/>
             }
         ]
     }
