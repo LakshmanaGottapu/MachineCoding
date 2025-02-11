@@ -24,10 +24,36 @@ function NestedComments() {
                     tag: "lakshman",
                     likes: 2,
                     dislikes: 0,
+                    replies:[
+                        {
+                            userId:1,
+                            id:3,
+                            created_at: '1 year ago',
+                            name: 'lakshman',
+                            timeline: ' 1 year ago',
+                            content: 'thank you',
+                            tag: "prasanth",
+                            likes: 2,
+                            dislikes: 0,
+                            replies:[
+                                {
+                                    userId:2,
+                                    id:4,
+                                    created_at: '1 year ago',
+                                    name: 'prasanth',
+                                    timeline: ' 1 year ago',
+                                    content: 'you are welcome',
+                                    tag: "lakshman",
+                                    likes: 2,
+                                    dislikes: 0
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     userId:3,
-                    id:3,
+                    id:5,
                     created_at: '1 year ago',
                     name: 'faheem',
                     timeline: ' 1 year ago',
@@ -38,18 +64,18 @@ function NestedComments() {
                 },
                 {
                     userId:1,
-                    id:4,
+                    id:6,
                     created_at: '1 year ago',
                     name: 'lakshman',
                     timeline: ' 1 year ago',
-                    content: 'what is haram',
+                    content: 'what is haram ?',
                     tag: "faheem",
                     likes: 0,
                     dislikes: 0,
                 },
                 {
                     userId:2,
-                    id:5,
+                    id:7,
                     created_at: '1 year ago',
                     name: 'prasanth',
                     timeline: ' 1 year ago',
@@ -62,7 +88,7 @@ function NestedComments() {
         },
         {
             userId:4,
-            id:6,
+            id:8,
             name: 'sai kumar',
             created_at: '6 months ago',
             content: 'jai jagun',
