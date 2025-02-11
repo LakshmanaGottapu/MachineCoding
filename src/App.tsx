@@ -18,6 +18,8 @@ function App() {
             <NavItem><Link to='clientpagination'>clientpagination</Link></NavItem>
             <NavItem><Link to='autocomplete'>autocomplete</Link></NavItem>
             <NavItem><Link to='accordion'>accordion</Link></NavItem>
+            <NavItem><Link to='nestedcomments'>nestedcomments</Link></NavItem>
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>

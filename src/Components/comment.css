@@ -1,0 +1,45 @@
+.comment{
+    margin: 1rem;
+    /* border-bottom: 1px solid black; */
+    padding: 0.5rem;
+}
+.comment-body{
+    padding-left:1rem;
+}
+.timeline{
+    color: green;
+    font-style: oblique;
+}
+.like{
+    margin-inline-end: 5px;
+}
+.dislike{
+    margin-inline-end: 5px;
+}
+.reply-btn{
+    margin: 5px;
+    cursor: pointer;
+    padding-inline: 8px;
+    padding-block: 4px;
+    border-radius: 40%;
+}
+.reply-btn:hover{
+    background-color: lightgray;
+}
+.replies{
+    cursor: pointer;
+    color: blue;
+    margin-block: 15px;
+}
+.replies:hover{
+    text-decoration: underline;
+}
+.symbol{
+    cursor: pointer;
+    padding-inline: 2px;
+    padding-block: 4px;
+    border-radius: 50%;
+}
+.symbol:hover{
+    background-color: lightgray;
+}

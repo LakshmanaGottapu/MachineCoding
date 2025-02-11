@@ -12,6 +12,7 @@ import APIPagination from './Components/APIPagination.tsx'
 import ClientPagination from './Components/ClientPagination.tsx'
 import AutoComplete from './Components/AutoComplete.tsx'
 import Accordion from './Components/Accordion.tsx'
+import NestedComments from './Components/NestedComments.jsx'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path: 'accordion',
                 element: <Accordion/>
+            },
+            {
+                path: 'nestedcomments',
+                element: <NestedComments/>
             }
         ]
     }
