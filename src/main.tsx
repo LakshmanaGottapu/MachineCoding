@@ -63,8 +63,8 @@ const router = createBrowserRouter([
                 element: <Accordion/>
             },
             {
-                path: 'nestedcomments',
-                element: <NestedComments/>
+                path: '/nestedcomments/:videoId',
+                element: <NestedComments lastId={8}/>
             }
         ]
     }
