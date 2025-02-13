@@ -24,6 +24,7 @@ const data:CommentType[] = [
                 id:2,
                 parentId:1,
                 name: 'prasanth',
+                tag:'sai',
                 created_at: '1 year ago',
                 content: 'you said the words in my heart',
                 likes: 2,
@@ -99,7 +100,7 @@ const data:CommentType[] = [
     }
 ]
 
-export type CommentActionType = {type:'add_comment' | 'delete_comment' | 'add_reply', videoId:number, parentId:number, content:string|null};
+export type CommentActionType = {type:'add_comment' | 'delete_comment' | 'add_reply' | 'edit_comment', videoId:number, parentId:number, content:string|null};
 
 function findNode(state:CommentType[], id:number):CommentType|null {
     let pointer:CommentType|null = null;
@@ -148,7 +149,7 @@ async function createComment(state:CommentType[], videoId:number, parentId:numbe
 function reducer(state:CommentType[], action:CommentActionType){
     const {type, videoId, parentId, content} = action
     switch(type){
-        case 'add_comment' :
+        case 'add_reply' :
             // createComment(state, videoId, parentId, content).then(res => {
             if(!content) break;
             const commentNode = findNode(state, parentId)
@@ -161,10 +162,12 @@ function reducer(state:CommentType[], action:CommentActionType){
             // });
             break;
         case 'delete_comment': return deleteNode(state, parentId);
-        case 'add_reply':
-            console.log('add reply');
-            console.log('adding reply');
-            console.log('added reply');
+        case 'edit_comment': {
+            const commentNode = findNode(state, parentId);
+            if( commentNode && content) 
+                commentNode.content = content;
+            return [...state];
+        }
     }
     return state;
 }
@@ -178,7 +181,6 @@ function NestedComments({lastId}:{lastId:number}) {
     return (
         <div>
             <h3>Comments</h3>
-            <button onClick={()=>dispatch({type:'add_comment', videoId:Number(videoId), parentId:1, content:''})}>add_comment</button>
             {/* <button onClick={()=>dispatch({type:'delete_comment'})}>delete_comment</button>
             <button onClick={()=>dispatch({type:'add_reply'})}>add_reply</button> */}
             {commentData.map(item => <Comment key={item.id} {...item} dispatch={dispatch} videoId={Number(videoId)}/>)}
