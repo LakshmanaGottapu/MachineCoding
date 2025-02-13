@@ -1,11 +1,12 @@
-import { useState, Dispatch } from 'react';
+import { useState, useRef, Dispatch } from 'react';
 import './comment.css';
 import { CommentType, CommentActionType } from './NestedComments'
 function Comment({ id, name, tag, created_at, content, likes, dislikes, replies, dispatch, videoId }: { id: number, name: string, tag?: string, created_at: string, content: string, likes: number, dislikes: number, replies?: CommentType[], dispatch: Dispatch<CommentActionType>, videoId: number }) {
     const [showReplies, setShowReplies] = useState(false);
     const [showReplyInput, setShowReplyInput] = useState(false);
     const [enableEdit, setEnableEdit] = useState(false);
-    // const {video}
+    const editRef = useRef(null);
+    const replyRef = useRef(null);
     return (
         <div className="comment">
             <div className="comment-header">
@@ -19,10 +20,10 @@ function Comment({ id, name, tag, created_at, content, likes, dislikes, replies,
                     {tag && <a href="#">@{tag} </a>}  
                     { enableEdit ? (
                         <>
-                            <textarea id="edit-content" defaultValue={content} autoFocus cols={50} rows={6} />
+                            <textarea id="edit-content" ref={editRef} defaultValue={content} autoFocus cols={50} rows={6} />
                             <div>
                                 <button onClick={() => {
-                                    const textInputElement = document.getElementById('edit-content');
+                                    const textInputElement = editRef.current;
                                     if (!textInputElement) return;
                                     const editedContent = (textInputElement as HTMLInputElement).value;
                                     setEnableEdit(false)
@@ -44,9 +45,9 @@ function Comment({ id, name, tag, created_at, content, likes, dislikes, replies,
                     <span className="reply-btn" onClick={() => setShowReplyInput(true)}>reply</span>
                 </div>
                 {showReplyInput && <div>
-                    <input id="reply-content" autoFocus />
+                    <input id="reply-content" ref={replyRef} autoFocus />
                     <button onClick={() => {
-                        const textInputElement = document.getElementById('reply-content');
+                        const textInputElement = replyRef.current;
                         if (!textInputElement) return;
                         const inputContent = (textInputElement as HTMLInputElement).value;
                         console.log(inputContent)
