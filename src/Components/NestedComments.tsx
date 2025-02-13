@@ -99,10 +99,10 @@ const data:CommentType[] = [
     }
 ]
 
-export type CommentActionType = {type:'add_comment' | 'delete_comment' | 'add_reply', videoId:number, parentId:number, content:string};
+export type CommentActionType = {type:'add_comment' | 'delete_comment' | 'add_reply', videoId:number, parentId:number, content:string|null};
 
-function findNode(state:CommentType[], id:number):CommentType|undefined {
-    let pointer:CommentType|undefined=undefined;
+function findNode(state:CommentType[], id:number):CommentType|null {
+    let pointer:CommentType|null = null;
     function find(state:CommentType[]){
         if(!pointer)
         for (const comment of state) {
@@ -118,6 +118,21 @@ function findNode(state:CommentType[], id:number):CommentType|undefined {
     }
     find(state);
     return pointer;
+}
+function deleteNode(state:CommentType[], id:number):CommentType[]{
+    let deleted = false;
+    function deleteComment(state:CommentType[]):CommentType[]{
+        return state.filter(comment => {
+            if(deleted) return deleted;
+            if(comment.id == id) {
+                deleted = true;
+                return false
+            }
+            if(comment.replies) comment.replies = deleteComment(comment.replies);
+            return true;
+        })
+    }
+    return deleteComment(state);
 }
 async function createComment(state:CommentType[], videoId:number, parentId:number, content:string){
     // api call...
@@ -135,20 +150,17 @@ function reducer(state:CommentType[], action:CommentActionType){
     switch(type){
         case 'add_comment' :
             // createComment(state, videoId, parentId, content).then(res => {
-                const commentNode = findNode(state, parentId)
-                if(commentNode){
-                    if(!commentNode.replies)
-                        commentNode.replies = [];
-                    commentNode.replies.push({id:Number(Date.now()), name:'lakshman', created_at:String(Date.now()), content, likes:0,dislikes:0})
-                    return [...state]
-                }
+            if(!content) break;
+            const commentNode = findNode(state, parentId)
+            if(commentNode){
+                if(!commentNode.replies)
+                    commentNode.replies = [];
+                commentNode.replies.push({id:Number(Date.now()), name:'lakshman', created_at:String(Date.now()), content, likes:0,dislikes:0})
+                return [...state]
+            }
             // });
             break;
-        case 'delete_comment':
-            console.log('will delete');
-            console.log('deleting');
-            console.log('deleted');
-            break;
+        case 'delete_comment': return deleteNode(state, parentId);
         case 'add_reply':
             console.log('add reply');
             console.log('adding reply');

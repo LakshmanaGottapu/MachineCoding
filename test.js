@@ -103,5 +103,17 @@ function findNode(state, id) {
     find(state);
     return pointer;
 }
-
-console.log(findNode(data, 2))
+function deleteNode(state, id){
+    // let deleteFlag = false;
+    function deleteComment(state){
+        return state.filter(comment => {
+            if(comment.id == id) 
+                return false;
+            if(comment.replies) 
+                comment.replies = deleteComment(comment.replies)
+            return true;
+        })
+    }
+    return deleteComment(state);
+}
+console.log(findNode(deleteNode(data, 2), 2))
