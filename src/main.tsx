@@ -14,6 +14,7 @@ import AutoComplete from './Components/AutoComplete.tsx'
 import Accordion from './Components/Accordion.tsx'
 import NestedComments from './Components/NestedComments.jsx'
 import Imageslider from './Pages/Imageslider.tsx'
+import ScrollAnimator from './Pages/ScrollAnimator.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -68,8 +69,12 @@ const router = createBrowserRouter([
                 element: <NestedComments lastId={8}/>
             },
             {
-                path: 'imageslider',
+                path: '/imageslider',
                 element: <Imageslider />
+            },
+            {
+                path: '/scroll',
+                element: <ScrollAnimator/>
             }
         ]
     }

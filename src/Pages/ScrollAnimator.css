@@ -1,0 +1,18 @@
+.section{
+    height: 10rem;
+    padding: 4rem;
+    border: 1px solid black;
+    width: 60vw;
+    margin:auto;
+    margin-block: 6rem;
+}
+.content{
+    height:6rem;
+    transform: translateY(100%);
+    opacity:0;
+    transition: transform 0.5s ease-in, opacity 0.5s ease;
+}
+.active{
+    transform: translateY(0);
+    opacity:1;
+}

@@ -20,6 +20,7 @@ function App() {
             <NavItem><Link to='accordion'>accordion</Link></NavItem>
             <NavItem><Link to='nestedcomments'>nestedcomments</Link></NavItem>
             <NavItem><Link to='imageslider'>imageslider</Link></NavItem>
+            <NavItem><Link to='scroll'>scroll</Link></NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
