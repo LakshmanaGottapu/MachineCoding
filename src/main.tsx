@@ -13,6 +13,7 @@ import ClientPagination from './Components/ClientPagination.tsx'
 import AutoComplete from './Components/AutoComplete.tsx'
 import Accordion from './Components/Accordion.tsx'
 import NestedComments from './Components/NestedComments.jsx'
+import Imageslider from './Pages/Imageslider.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: '/nestedcomments/:videoId',
                 element: <NestedComments lastId={8}/>
+            },
+            {
+                path: 'imageslider',
+                element: <Imageslider />
             }
         ]
     }

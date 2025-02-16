@@ -116,4 +116,22 @@ function deleteNode(state, id){
     }
     return deleteComment(state);
 }
-console.log(findNode(deleteNode(data, 2), 2))
+// console.log(findNode(deleteNode(data, 2), 2))
+
+let a = {
+    name: 'lakshman',
+    age: 28,
+    hobbies: ['tennis', 'chess']
+}
+let b = {
+    name: 'lakshman',
+    age: 28,
+    hobbies: ['chess', 'tennis']
+}
+
+function compare(obj1, obj2){
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    if(keys1.length !==keys2.length) return false;
+    keys1.filter(key1 => keys2.filter(key2 => key1 == key2))
+}

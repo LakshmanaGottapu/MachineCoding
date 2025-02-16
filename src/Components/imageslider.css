@@ -1,0 +1,5 @@
+.slider-container{
+    display: flex;
+    transition: transform 2s ease-in-out, opacity 1s ease-in;
+}
+
