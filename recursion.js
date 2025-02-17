@@ -87,29 +87,29 @@ const data = [
 ]
 function findNode(state, id) {
     let pointer;
-    function find(state){
-        if(!pointer)
-        for (const comment of state) {
-            if (comment.id === id) {
-                pointer = comment;
-                break;
+    function find(state) {
+        if (!pointer)
+            for (const comment of state) {
+                if (comment.id === id) {
+                    pointer = comment;
+                    break;
+                }
+                else {
+                    if (comment.replies)
+                        find(comment.replies)
+                }
             }
-            else {
-                if (comment.replies)
-                    find(comment.replies)
-            }
-        }
     }
     find(state);
     return pointer;
 }
-function deleteNode(state, id){
+function deleteNode(state, id) {
     // let deleteFlag = false;
-    function deleteComment(state){
+    function deleteComment(state) {
         return state.filter(comment => {
-            if(comment.id == id) 
+            if (comment.id == id)
                 return false;
-            if(comment.replies) 
+            if (comment.replies)
                 comment.replies = deleteComment(comment.replies)
             return true;
         })
@@ -120,18 +120,40 @@ function deleteNode(state, id){
 
 let a = {
     name: 'lakshman',
+    hobbies: [{sport:'tennis', popularity:10}, {sport:'chess', popularity:8}],
     age: 28,
-    hobbies: ['tennis', 'chess']
+    time: 'sometime'
 }
 let b = {
     name: 'lakshman',
     age: 28,
-    hobbies: ['chess', 'tennis']
+    hobbies: [{sport:'tennis', popularity:10}, {sport:'chess', popularity:8}],
+    time: 'sometime',
 }
 
-function compare(obj1, obj2){
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
-    if(keys1.length !==keys2.length) return false;
-    keys1.filter(key1 => keys2.filter(key2 => key1 == key2))
+function compare(obj1, obj2) {
+    if (typeof obj1 !== typeof obj2) return false;
+    if (typeof obj1 !== 'object') return obj1 === obj2;
+    // obj1 and obj2 are of same type and are either object or array
+    if (Array.isArray(obj1)) {
+        // obj1 and obj2 are arrays
+        if (obj1.length !== obj2.length) return false;
+        return obj1.reduce((prev, current, index) => {
+            return prev && compare(current, obj2[index])
+        }, true)
+    }
+    else {
+        // obj1 and obj2 are not arrays, they are mere objects
+        const keys1 = Object.keys(obj1);
+        const keys2 = Object.keys(obj2);
+        if (keys1.length !== keys2.length) return false;
+        if (keys1.filter(key1 => keys2.filter(key2 => key1 == key2).length == 1).length !== keys1.length) return false;
+        // keys1 and keys2 are same
+        return keys1.reduce((prev, current) => {
+            return prev && compare(obj1[current], obj2[current])
+        }, true)
+    }
 }
+console.log(compare(a, b))
+
+
