@@ -21,6 +21,7 @@ function App() {
             <NavItem><Link to='nestedcomments'>nestedcomments</Link></NavItem>
             <NavItem><Link to='imageslider'>imageslider</Link></NavItem>
             <NavItem><Link to='scroll'>scroll</Link></NavItem>
+            <NavItem><Link to='filesystem'>file system</Link></NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -15,6 +15,8 @@ import Accordion from './Components/Accordion.tsx'
 import NestedComments from './Components/NestedComments.jsx'
 import Imageslider from './Pages/Imageslider.tsx'
 import ScrollAnimator from './Pages/ScrollAnimator.tsx'
+import FolderPage from './Pages/FolderPage.tsx'
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -75,6 +77,10 @@ const router = createBrowserRouter([
             {
                 path: '/scroll',
                 element: <ScrollAnimator/>
+            },
+            {
+                path: '/filesystem',
+                element: <FolderPage />
             }
         ]
     }
