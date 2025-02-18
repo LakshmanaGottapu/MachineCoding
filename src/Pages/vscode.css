@@ -1,0 +1,11 @@
+nav{
+    border: 1px solid black;
+    min-height: 1rem;
+}
+nav.item{
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 5px;
+    cursor:pointer;
+    user-select: none;
+}
