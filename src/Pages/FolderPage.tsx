@@ -78,8 +78,10 @@ function FolderPage() {
     }
     useEffect(()=>{
         setActiveItems(prev => {
-            if(activeItem == undefined)
+            if(activeItem == undefined){
+                if(activeItems)
                 return [];
+            }
             else {
                 if(prev.indexOf(activeItem) < 0){
                     prev.push(activeItem);
@@ -97,7 +99,7 @@ function FolderPage() {
                 activeItems.splice(index, 1);
                 setActiveItems([...activeItems]);
                 if(item==activeItem){
-                    setActiveItem(activeItems[index-1]);
+                    activeItems[index-1] ? setActiveItem(activeItems[index-1]) : setActiveItem(activeItems[index]);
                 }
             }
         }
