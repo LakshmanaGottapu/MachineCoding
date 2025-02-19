@@ -1,6 +1,5 @@
 nav{
-    border: 1px solid black;
-    min-height: 1rem;
+    min-height: 1.5rem;
 }
 nav.item{
     border: 1px solid black;

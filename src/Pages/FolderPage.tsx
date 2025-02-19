@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, MouseEvent, ChangeEvent} from 'react';
 import FileSystem from '../Components/FileSystem';
 import './vscode.css';
 export type FileType = {
@@ -6,7 +6,6 @@ export type FileType = {
 }
 
 function FolderPage() {
-    const [fileContent, setFileContent] = useState('');
     const [activeItem, setActiveItem] = useState<FileType>();
     const [showDashboard, setShowDashboard] = useState(false);
     const [activeItems, setActiveItems] = useState<FileType[]>([]);
@@ -51,19 +50,19 @@ function FolderPage() {
                 id:6,
                 name: 'package.json',
                 isFolder: false,
-                content: 'react: 19'            
+                content: 'package.json'            
             },
             {
                 id:7,
                 name: 'package-lock.json',
                 isFolder: false,
-                content: 'vite: 1.2'          
+                content: 'package-lock.json'          
             }
         ]
     })
-    function handleFileInput(){
+    function handleFileInput(e:ChangeEvent<HTMLTextAreaElement>){
         if(activeItem !==undefined){
-            activeItem.content = fileContent;
+            activeItem.content = e.target.value;
             setData({...data});
         }
     }
@@ -78,32 +77,44 @@ function FolderPage() {
         }
     }
     useEffect(()=>{
-        if(activeItem && activeItem.content)
-            setFileContent(activeItem.content)
         setActiveItems(prev => {
             if(activeItem == undefined)
                 return [];
             else {
                 if(prev.indexOf(activeItem) < 0){
                     prev.push(activeItem);
+                    return [...prev];
                 }
-                return [...prev];
+                else return prev;
             }
         })
     },[activeItem])
+    function handleCloseNavItem(e:MouseEvent, item:FileType){
+        e.stopPropagation();
+        if(activeItem){
+            const index = activeItems.indexOf(item);
+            if(index >= 0){
+                activeItems.splice(index, 1);
+                setActiveItems([...activeItems]);
+                if(item==activeItem){
+                    setActiveItem(activeItems[index-1]);
+                }
+            }
+        }
+    }
     return (
         <section style={{height: '90vh', display:"flex", border:'1px solid black', padding:'5px', margin:'5px'}}>
             <section style={{width:'3rem', border:'1px solid black', display:'flex', flexDirection:'column'}}>
                 <span style={{cursor:'pointer', padding:'0.4rem', userSelect:'none'}} onDoubleClick={()=>setShowDashboard(prev => !prev)}>🗃️</span>
             </section>
             {showDashboard && <aside style={{width:'20vw', borderRight:'2px solid black', paddingRight:'1vw'}}>
-                <FileSystem data={data} setActiveItems={setActiveItems} setActiveItem={setActiveItem}/>
+                <FileSystem data={data} setActiveItem={setActiveItem}/>
             </aside>}
             <section style={{minWidth: '70vw', marginLeft:'1rem'}}>
                 <nav style={{width:'70vw', display:'flex'}}>
-                    { activeItems.map(item => <nav className="item" onClick={()=>setActiveItem(item)} style={{border:'1px solid black', backgroundColor:item==activeItem ? 'lightgray' : '' }} >{item.name}</nav>) }
+                    { activeItems.map(item => <nav className="item" key={item.id} onClick={()=>setActiveItem(item)} style={{border:'1px solid black', backgroundColor:item==activeItem ? 'lightgray' : '' }} >{item.name}<span onClick={e => handleCloseNavItem(e,item)}>❌</span></nav>)}
                 </nav>
-                <textarea name="" id="" cols={157} rows={46} onChange={(e)=>setFileContent(e.target.value)} value={fileContent} style={{padding:'15px'}} onBlur={handleFileInput}>
+                <textarea name="" id="" cols={157} rows={46} onChange={(e)=>handleFileInput(e)} value={activeItem==undefined ? '' : activeItem.content} style={{padding:'15px'}}>
                 </textarea>
             </section>
         </section>
