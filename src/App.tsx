@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 function App() {
   return (
-    <>
+    <div>
+      <h1>App</h1>
       <Navbar expand="lg" className="bg-body-tertiary" style={{ zIndex: 10 }}>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" style={{display:'flex', justifyContent:'space-evenly'}}>
@@ -26,7 +27,7 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
       <Outlet />
-    </>
+    </div>
   )
 }
 

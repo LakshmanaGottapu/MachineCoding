@@ -40,6 +40,7 @@ const ScrollAnimator = () => {
     }, [])
   return (
     <div className='container' style={{height: '100vh'}}>
+        <h1>ScrollAnimator</h1>
         {data.map(section => <div key={section.id} className='section'>
             <div className="content">
                 <h2>{section.title}</h2>

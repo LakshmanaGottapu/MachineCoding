@@ -7,6 +7,7 @@ function MultiTabPage() {
     ]
   return (
     <>
+      <h1>MultiTabPage</h1>
       <TabForm tabs={tabs}/>
     </>
   )

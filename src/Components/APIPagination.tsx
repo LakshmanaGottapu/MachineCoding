@@ -20,9 +20,10 @@ function Pages() {
         getData();
     }, [currentPage, limit])
     return (
-        <div style={{height:'100vh', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-            <div style={{ height: '75vh', width:'90vw', overflow: 'scroll', backgroundColor: 'lightgray', padding:'1rem' }}>
-                <table style={{ height: '75vh', width:'90vw', overflow: 'scroll', backgroundColor: 'lightgray' }}>
+        <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <h1>APIPagination</h1>
+            <div style={{ height: '75vh', width: '90vw', overflow: 'scroll', backgroundColor: 'lightgray', padding: '1rem' }}>
+                <table style={{ height: '75vh', width: '90vw', overflow: 'scroll', backgroundColor: 'lightgray' }}>
                     <thead>
                         <tr>
                             <th>title</th>

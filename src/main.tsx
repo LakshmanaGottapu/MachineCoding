@@ -16,54 +16,58 @@ import NestedComments from './Components/NestedComments.jsx'
 import Imageslider from './Pages/Imageslider.tsx'
 import ScrollAnimator from './Pages/ScrollAnimator.tsx'
 import FolderPage from './Pages/FolderPage.tsx'
-
+import Home from './Pages/Home.tsx';
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App/>,
         children:[
             {
-                path:'mousemove',
+                path: '/',
+                element: <Home/>
+            },
+            {
+                path:'/mousemove',
                 element:<MouseMove/>
             },
             {
-                path:'mousedrag',
+                path:'/mousedrag',
                 element:<MouseDrag/>
             },
             {
-                path:'counter',
+                path:'/counter',
                 element: <Counter/>
             },
             {
-                path: 'event',
+                path: '/event',
                 element: <EventPage/>
             },
             {
-                path: 'gun',
+                path: '/gun',
                 element: <GunPage/>
             },
             {
-                path: 'tabform',
+                path: '/tabform',
                 element: <MultitabPage />
             },
             {
-                path: 'heavy',
+                path: '/heavy',
                 element: <HeavyTask/>
             },
             {
-                path: 'apipagination',
+                path: '/apipagination',
                 element: <APIPagination/>
             },
             {
-                path: 'clientpagination',
+                path: '/clientpagination',
                 element: <ClientPagination/>
             },
             {
-                path: 'autocomplete',
+                path: '/autocomplete',
                 element: <AutoComplete/>
             },
             {
-                path: 'accordion',
+                path: '/accordion',
                 element: <Accordion/>
             },
             {

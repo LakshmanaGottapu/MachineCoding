@@ -25,6 +25,7 @@ function ClientPagination() {
 
     return (
         <div style={{height:'100vh', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            <h1>ClientPagination</h1>
             <div style={{ height: '75vh', width:'90vw', overflow: 'scroll', backgroundColor: 'lightgray', padding:'1rem' }}>
                 <table style={{ height: '75vh', width:'90vw', overflow: 'scroll', backgroundColor: 'lightgray' }}>
                     <thead>
