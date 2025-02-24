@@ -1,4 +1,4 @@
-import {useState, useEffect, useMemo} from 'react'
+import {useState, useMemo} from 'react'
 
 function Accordion() {
     const [data] = useState({profile: {
@@ -21,6 +21,7 @@ function Accordion() {
     const [key, setKey] = useState< "" | keyof typeof data>("");
   return (
     <div >
+      Accordion
         {keys.map(title => (<div key={title} style={{margin:'auto', border:'1px solid black', width:'350px'}}>
             <div onClick={()=>{key===title ? setKey("") : setKey(title)}} style={{backgroundColor:'olivedrab', padding:'5px', cursor:'pointer'}}>
               <span>{title}</span>

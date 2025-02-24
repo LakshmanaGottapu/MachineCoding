@@ -52,7 +52,35 @@ describe("Test App component", () => {
         const outletElement = screen.getByText('Home');
         expect(outletElement).toBeInTheDocument();
     })
-    test("router navigation", ()=>{
-        
+})
+describe("App routing", ()=>{
+    beforeEach(() => {
+        render(
+            <MemoryRouter initialEntries={['/']}>
+                <Routes>
+                    <Route path="/" element={<App />}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/tabform" element={<MultitabPage />} />
+                        <Route path="/apipagination" element={<APIPagination />} />
+                        <Route path="/clientpagination" element={<ClientPagination />} />
+                        <Route path="/autocomplete" element={<AutoComplete />} />
+                        <Route path="/accordion" element={<Accordion />} />
+                        <Route path="/nestedcomments/123" element={<NestedComments lastId={8}/>} />
+                        <Route path="/scroll" element={<ScrollAnimator />} />
+                        <Route path="/filesystem" element={<FolderPage />} />
+                    </Route>
+                </Routes>
+            </MemoryRouter>
+        )
+    })
+    test("accordion form routing", async ()=>{
+        const accordionLink = screen.getByRole('link', {name:/accordion/i})
+        await userEvent.click(accordionLink);
+        expect(screen.getByText("Accordion")).toBeVisible()
+    })
+    test("multitab form routing", async ()=>{
+        const tabformLink = screen.getByText('Tabform')
+        await userEvent.click(tabformLink);
+        expect(screen.getByText("MultiTabPage")).toBeVisible();
     })
 })

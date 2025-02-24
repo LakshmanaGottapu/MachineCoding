@@ -6,10 +6,10 @@ function MultiTabPage() {
         { tabName:'about', formItems:['father', 'place', 'occupation'] },
     ]
   return (
-    <>
+    <div>
       <h1>MultiTabPage</h1>
       <TabForm tabs={tabs}/>
-    </>
+    </div>
   )
 }
 
