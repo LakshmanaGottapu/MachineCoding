@@ -1,22 +1,22 @@
 import {useState, useMemo} from 'react'
 
-function Accordion() {
-    const [data] = useState({profile: {
-        name: 'lakshman',
-        age: 28,
-        motherTongue: 'telugu',
-        state: 'Andhra Pradesh'
-      },
-      education: {
-        Intermediate: 'MPC',
-        undergrad: 'engineering',
-      },
-      hobbies: {
-        timepass: 'watching tv',
-        passion: 'technology',
-        curiosity: 'science'
-      }
-    })
+function Accordion({accordionData={profile: {
+  name: 'lakshman',
+  age: 28,
+  motherTongue: 'telugu',
+  state: 'Andhra Pradesh'
+},
+education: {
+  Intermediate: 'MPC',
+  undergrad: 'engineering',
+},
+hobbies: {
+  timepass: 'watching tv',
+  passion: 'technology',
+  curiosity: 'science'
+}
+}}) {
+    const [data] = useState(accordionData)
     const keys = useMemo(()=>Object.keys(data) as Array<keyof typeof data>,[data]);
     const [key, setKey] = useState< "" | keyof typeof data>("");
   return (

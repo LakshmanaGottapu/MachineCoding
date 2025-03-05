@@ -76,7 +76,7 @@ describe("App routing", ()=>{
     test("accordion form routing", async ()=>{
         const accordionLink = screen.getByRole('link', {name:/accordion/i})
         await userEvent.click(accordionLink);
-        expect(screen.getByText("Accordion")).toBeVisible()
+        expect(screen.getByText("Accordion")).toBeVisible();
     })
     test("multitab form routing", async ()=>{
         const tabformLink = screen.getByText('Tabform')
